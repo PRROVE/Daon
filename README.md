@@ -1,8 +1,6 @@
 # Daon
 
-![DAON MVP Workflow](docs/daon_mvp_workflow.png)
-
----
+![DAON MVP Workflow](./Docs/Daon_workflow.png)
 
 ## 1. Documentation
 
@@ -17,7 +15,6 @@
 - 주요 파라미터
 - 공식 구조
 
----
 
 ## 2. SDK
 
@@ -32,7 +29,6 @@
 - 라이브러리 내부 구성
 - 제공되는 기능
 
----
 
 ## 3. Model Structure
 
@@ -48,7 +44,6 @@
 - 주요 파라미터
 - 전체 데이터 흐름
 
----
 
 ## 4. Code Review
 
