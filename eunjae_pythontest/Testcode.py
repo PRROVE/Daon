@@ -45,30 +45,30 @@ def speech_to_text(audio_path: str) -> str:
     return text.strip()
 
 
-# =========================
-# 4. TTS 함수
-# =========================
+    # =========================
+    # 4. TTS 함수
+    # =========================
 
-def text_to_speech(
-    text: str,
-    output_path: str
-) -> str:
+    def text_to_speech(
+            text: str,
+            output_path: str
+    ) -> str:
 
-    wav, duration = tts_model.synthesize(
-        text=text,
-        voice_style=voice_style,
-        total_steps=8,
-        speed=1.0,
-        max_chunk_length=120,
-        silence_duration=0.3,
-        lang="ko",
-        verbose=False
-    )
+        wav, duration = tts_model.synthesize(
+            text=text,
+            voice_style=voice_style,
+            total_steps=8,
+            speed=1.0,
+            max_chunk_length=120,
+            silence_duration=0.3,
+            lang="ko",
+            verbose=False
+        )
 
-    tts_model.save_audio(
-        wav,
-        output_path
-    )
+        tts_model.save_audio(
+            wav,
+            output_path
+        )
 
     return output_path
 
@@ -78,7 +78,6 @@ def text_to_speech(
 # =========================
 
 def main():
-
     input_audio = "test1.m4a"
 
     print("1. STT 시작")
@@ -87,7 +86,7 @@ def main():
         input_audio
     )
 
-    print("STT 결과:")
+    print("STT :")
     print(text)
 
     print()
@@ -99,7 +98,7 @@ def main():
         "output.wav"
     )
 
-    print("TTS 완료:")
+    print("TTS :")
     print(output_audio)
 
 
