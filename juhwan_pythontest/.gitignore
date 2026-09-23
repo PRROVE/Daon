@@ -1,2 +1,4 @@
 *.m4a
-*.wavgi
+*.wav
+study/
+.idea/

@@ -1,1 +1,2 @@
-openai-whisper
+openai-whisper==20250625
+supertonic==1.3.1
