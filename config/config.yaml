@@ -1,47 +1,44 @@
-# 실행 장치. auto = GPU 있으면 cuda, 없으면 cpu. GPU 메모리가 모자라 공유 메모리로 넘쳐 느려지면 cpu 로 강제한다
-# 2026-10-27 이 PC 의 GPU 에서는 whisper medium 이 NaN 을 내서(fp16 연산 실패) cpu 로 둔다. GPU 가 되는 PC 는 auto
+# STT 실행 장치. cpu = CPU, auto = CUDA 사용 가능 시 GPU.
 device: cpu
 
 stt:
-  # seastar105/whisper-medium-komixv2 (HF) 를 openai-whisper 형식으로 바꾼 가중치 (변환: v1 stt_compare/convert_komix.py)
-  # 2026-10-29 turbo 에서 교체: 방언 eval_set 56건×3회 CER 19.8% → 12.2% (VAD 자르기 포함). openai-whisper 이름(turbo 등)도 그대로 쓸 수 있다
+  # seastar105/whisper-medium-komixv2를 openai-whisper 형식으로 변환한 가중치.
   model: komixv2
   language: ko
   model_dir: models/whisper          # 가중치 위치 (komixv2.pt)
-  # komixv2 는 타임스탬프 없이 학습돼(HF config forced_decoder_ids) 타임스탬프 디코딩 시 구간을 건너뛴다
+  # KoMixV2는 타임스탬프 없이 전사한다.
   decode_options:
     without_timestamps: true
-  # Silero VAD 저장소 사본 (v6.2.3, MIT). Whisper 는 30초 창이라 긴 답변은 쉼에서 나눠 넣는다. komixv2 는 안 나누면 30초 뒤를 빠뜨린다
+  # Silero VAD v6.2.3. 긴 음성은 쉼을 기준으로 분할한다.
   vad_dir: models/vad/silero-vad
-  max_chunk_sec: 28                  # 라벨 대조에서 15·20초는 어절을 4곳씩 잘랐고 28초는 0곳
-  long_pause_sec: 1.0                # 단어 안 쉼(말 늘임)은 최대 0.8초였다. 이보다 긴 쉼에서 먼저 자른다
+  max_chunk_sec: 28                  # 분할 구간 길이 기준(초)
+  long_pause_sec: 1.0                # 우선 분할할 쉼의 최소 길이(초)
 
 llm:
   host: http://localhost:11434
-  # qwen3:4b-instruct = Qwen3-4B-Instruct-2507 (Q4_K_M). qwen3:4b 태그는 Thinking 모델이라 쓰지 않음
-  # kanana2:3b-instruct 는 2026-10-29 공식 템플릿으로 다시 시험해도 원문 베끼기·지시문 노출·해요체 위반이라 제외 (Ollama 에서 삭제)
+  # Qwen3-4B-Instruct-2507 (Q4_K_M), Ollama 로컬 실행.
   model: qwen3:4b-instruct
-  # null 이면 요청에 think 를 넣지 않음 (instruct 모델은 thinking 미지원이라 넣으면 400)
+  # 현재 Instruct 모델에는 think 옵션을 전달하지 않는다.
   think: null
-  # null 이면 Ollama 가 정함. 0 이면 CPU 강제 (API options.num_gpu). 모델 파일 위치는 환경 변수 OLLAMA_MODELS=models/ollama
+  # 0 = CPU, null = Ollama 자동 배치. 모델 경로: OLLAMA_MODELS=models/ollama.
   num_gpu: 0
-  timeout_sec: 300                   # 요청 상한. CPU 에서 사연 1건 30~60초, 넘으면 실패로 기록
-  # 프롬프트는 이 파일 하나만 둔다 (2026-10-30 story_v6 을 story.md 로 승격, v4·v5·v7 삭제). Pipeline 이 sha256 을 대조해 다르면 실행을 거부한다 (null 이면 검사 안 함)
+  timeout_sec: 300                   # Ollama 요청 제한 시간(초)
+  # 사연 생성 프롬프트. SHA256이 다르면 실행을 중단한다.
   prompt_path: prompts/story.md
   prompt_sha256: b073765a98c309a7e1c9273bb9177111a0fb008b370aab6cf5994b8758ccd9d9
-  # 평가지표.md R2 상한. 실측 6.84자/초 × 45초 (2026-10-01, voice M1). 하한은 2026-10-30 삭제. 형식 검사와 후처리(군말 덜기 기준)에서 쓴다
+  # 형식 검사 R2: 공백 포함 글자 수 상한.
   target_chars:
     max: 308
 
 tts:
-  # Python API 는 voice 지정이 필수라 CLI 기본값(M1). speed·total_steps 는 키를 두지 않아 라이브러리 기본값
+  # Supertonic 한국어 음성. 속도·합성 단계 수는 라이브러리 기본값.
   voice: M1
   lang: ko
   model_dir: models/supertonic       # 가중치 위치. 없으면 여기로 내려받는다
 
 pipeline:
   out_wav_name: story.wav
-  # R6·R7 문구는 LLM 에 맡기면 일정하지 않아 후처리에서 고정한다
+  # 후처리에서 적용할 도입·마무리 문구.
   intro: "오늘의 사연 주인공은 {nickname}이에요."
   closing: "비슷한 경험이 있으신 분은 {nickname}께 이야기를 들려주세요."
 
@@ -65,13 +62,13 @@ judge:
   max_len: 1024
   head_max_len: 1024
 
-# 평가 실행 (평가지표.md ①~④ 합격선·조건)
+# 평가 실행. 규칙·산식은 docs/평가지표.md 참고.
 eval:
   results_dir: results
-  reps: 1                   # ③ 사연당 3회. 전체를 3바퀴 도는 순서
+  reps: 1                   # 샘플당 실행 횟수. 워밍업 1건은 별도 실행 후 집계 제외.
   e2e_timeout_sec: 120      # ③ E2E 성공 기준
   intro: "오늘의 사연 주인공은"   # R6
-  thresholds:               # 제안 합격선(%). P95·재생시간 합격선은 2026-10-30 삭제 (P95 는 값만 보고)
+  thresholds:               # 지표별 합격선(%)
     fact_recall_macro: 95
     inconsistency_rate: 5
     format_rate: 90

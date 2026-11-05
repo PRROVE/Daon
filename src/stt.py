@@ -20,7 +20,7 @@ class STT:
         self.decode_options = decode_options
         self.max_chunk_sec = max_chunk_sec
         self.long_pause_sec = long_pause_sec
-        # openai-whisper 이름(turbo 등)이 아니면 model_dir 의 변환 가중치(komixv2.pt) 파일
+        # 등록된 모델 이름이 아니면 model_dir의 로컬 가중치를 읽는다.
         name = model if model in whisper.available_models() else str(model_dir / f"{model}.pt")
         # device "auto" 는 whisper 기본 동작(cuda 있으면 cuda)에 맡긴다
         self.model = whisper.load_model(name, device=None if device == "auto" else device, download_root=str(model_dir))

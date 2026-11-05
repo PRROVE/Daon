@@ -127,7 +127,7 @@ class Report:
         recalls = [r["fact_recall"] for r in judged if r["fact_recall"] is not None]
         unjudged = [r["request_id"] for r in records if not r["judged"]]
         return {
-            # 합격 판정은 사연별 평균(macro). 분모는 판정된 사연 수 (3회 실행 모두 포함)
+            # 합격 판정은 사연별 평균(macro). 설정된 반복 실행 중 판정된 요청을 모두 포함한다.
             "fact_recall_macro": {"value": round(100 * statistics.mean(recalls), 2) if recalls else None,
                                   "numerator": "사연별 보존율 평균", "denominator": len(recalls),
                                   "note": None if recalls else "계산 불가"},
