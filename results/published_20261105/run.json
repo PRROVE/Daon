@@ -1,0 +1,28 @@
+{
+  "run_id": "laya_migration_20261105_001",
+  "set_name": "dev_clear",
+  "set_dir": "data/dev_clear",
+  "n_samples": 28,
+  "reps": 1,
+  "warmup": 1,
+  "started_at": "2026-11-02T19:39:46.714824+09:00",
+  "env": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.17",
+    "gpu": "NVIDIA T400 4GB",
+    "ram_gb": 15.9,
+    "torch": "2.11.0+cu128",
+    "openai-whisper": "20250625",
+    "supertonic": "1.3.1"
+  },
+  "stt_model": "komixv2",
+  "llm_model": "qwen3:4b-instruct",
+  "prompt_path": "prompts/story.md",
+  "prompt_sha256": "b073765a98c309a7e1c9273bb9177111a0fb008b370aab6cf5994b8758ccd9d9",
+  "gpu_peak_mib": 701,
+  "finished_at": "2026-11-02T20:12:34.661912+09:00",
+  "validation_of_existing_outputs": true,
+  "generation_source_run": "dev_clear_20261102_193946",
+  "e2e_reused": true,
+  "public_export": true
+}

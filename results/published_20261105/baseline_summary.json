@@ -1,0 +1,39 @@
+{
+  "run_id": "dev_clear_20261102_193946",
+  "set_name": "dev_clear",
+  "n_samples": 28,
+  "n_requests": 28,
+  "judge": "Codex (manual), historical baseline",
+  "metrics": {
+    "preservation_macro": {
+      "value": 94.58,
+      "numerator": "사연별 보존율 평균",
+      "denominator": 28,
+      "note": null
+    },
+    "inconsistency_rate": {
+      "value": 28.57,
+      "numerator": 8,
+      "denominator": 28,
+      "note": null
+    },
+    "format_rate": {
+      "value": 89.29,
+      "numerator": 25,
+      "denominator": 28,
+      "note": null
+    },
+    "e2e_success_rate": {
+      "value": 96.43,
+      "numerator": 27,
+      "denominator": 28,
+      "note": null
+    },
+    "overall_pass_rate": {
+      "value": 64.29,
+      "numerator": 18,
+      "denominator": 28,
+      "note": null
+    }
+  }
+}

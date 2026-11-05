@@ -1,0 +1,353 @@
+{
+  "run_id": "laya_migration_20261105_001",
+  "set_name": "dev_clear",
+  "n_samples": 28,
+  "n_requests": 28,
+  "warmup_excluded": 1,
+  "env": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.17",
+    "gpu": "NVIDIA T400 4GB",
+    "ram_gb": 15.9,
+    "torch": "2.11.0+cu128",
+    "openai-whisper": "20250625",
+    "supertonic": "1.3.1"
+  },
+  "story_prompt_sha256": "b073765a98c309a7e1c9273bb9177111a0fb008b370aab6cf5994b8758ccd9d9",
+  "judge": {
+    "models": [
+      "laya-real400-repair001"
+    ],
+    "signatures": [
+      "fb74554158dbf2542137357cc6f0adda0a6309f713800c0c73d63520e28d57fe"
+    ],
+    "metadata": {
+      "model": "laya-real400-repair001",
+      "weights_sha256": "ae3949e8b843fd143fdf9737511d449ae983b0da3af3fd3debbad90ada6b209f",
+      "questions_sha256": "d7565de9c7e8034aa86ff555d232e0cbdcc1278288cc2770d53b267c83a2e7e0",
+      "artifact_hashes": {
+        "encoder\\config.json": "8883c64931d72df518bc39b0a883f90123d5390a65037b29569ca615b9b5ff61",
+        "questions.json": "d7565de9c7e8034aa86ff555d232e0cbdcc1278288cc2770d53b267c83a2e7e0",
+        "rl_agent_config.json": "1611b727e2f7d8b72a7e1488d1d65820ae382177853ff025d3d45d6d94d65818",
+        "tokenizer\\special_tokens_map.json": "501906df38f65ffa6f7b77b8650448e1b95f2cc6eded074fec6213bf8c951be4",
+        "tokenizer\\tokenizer.json": "dbba919c6e5e492bc22beb80abb64e6fcc7e8744dc696e8388b8c977767afa4b",
+        "tokenizer\\tokenizer_config.json": "537ca39e23e2cccc139c2066a312396647d8f57b7a6aa530773e00f699fff0d4"
+      },
+      "device": "cuda",
+      "laya_version": "0.4.22",
+      "torch_version": "2.11.0+cu128",
+      "binary_threshold": 0.5,
+      "max_len": 1024,
+      "head_max_len": 1024,
+      "schema": "laya-v1"
+    }
+  },
+  "content": {
+    "fact_recall_macro": {
+      "value": 83.31,
+      "numerator": "사연별 보존율 평균",
+      "denominator": 28,
+      "note": null
+    },
+    "preservation_methods": {
+      "laya_estimate": 28
+    },
+    "preservation_note": "Laya 점수 평균은 추정 보존율이며 사실별 정답 개수를 세는 지표와 다름",
+    "distortion_rate": {
+      "value": 35.71,
+      "numerator": 10,
+      "denominator": 28,
+      "note": null
+    },
+    "addition_rate": {
+      "value": 0.0,
+      "numerator": 0,
+      "denominator": 28,
+      "note": null
+    },
+    "inconsistency_rate": {
+      "value": 35.71,
+      "numerator": 10,
+      "denominator": 28,
+      "note": null
+    },
+    "unjudged": {
+      "count": 0,
+      "request_ids": []
+    },
+    "provisional": false
+  },
+  "format": {
+    "format_rate": {
+      "value": 89.29,
+      "numerator": 25,
+      "denominator": 28,
+      "note": null
+    },
+    "format_unjudged": 0,
+    "rule_fail_counts": {
+      "R1": 0,
+      "R2": 2,
+      "R3": 0,
+      "R4": 0,
+      "R5": 1,
+      "R6": 0,
+      "R7": 0
+    },
+    "invalid_audio": {
+      "count": 0,
+      "request_ids": []
+    }
+  },
+  "stability": {
+    "e2e_success_rate": {
+      "value": 96.43,
+      "numerator": 27,
+      "denominator": 28,
+      "note": null
+    },
+    "failures": {
+      "by_stage": {},
+      "timeout": 1,
+      "invalid_audio": 0
+    },
+    "dataset": "AI Hub 중·노년층 방언 1인발화 질문에답하기 (단일 데이터셋)",
+    "by_length_bucket": {
+      "20": {
+        "value": 100.0,
+        "numerator": 4,
+        "denominator": 4,
+        "note": null
+      },
+      "30": {
+        "value": 100.0,
+        "numerator": 10,
+        "denominator": 10,
+        "note": null
+      },
+      "40": {
+        "value": 100.0,
+        "numerator": 12,
+        "denominator": 12,
+        "note": null
+      },
+      "50": {
+        "value": 100.0,
+        "numerator": 1,
+        "denominator": 1,
+        "note": null
+      },
+      "60": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 1,
+        "note": null
+      }
+    }
+  },
+  "overall": {
+    "pass_rate": {
+      "value": 32.14,
+      "numerator": 9,
+      "denominator": 28,
+      "note": null
+    },
+    "note": "Laya 사용 시 보존율 점수 100%를 전부 보존의 추정 조건으로 사용. E2E는 실제 실행 기록.",
+    "by_topic": {
+      "가족": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 4,
+        "note": null
+      },
+      "건강": {
+        "value": 75.0,
+        "numerator": 3,
+        "denominator": 4,
+        "note": null
+      },
+      "농경": {
+        "value": 25.0,
+        "numerator": 1,
+        "denominator": 4,
+        "note": null
+      },
+      "식": {
+        "value": 33.33,
+        "numerator": 1,
+        "denominator": 3,
+        "note": null
+      },
+      "응급상황": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 1,
+        "note": null
+      },
+      "의": {
+        "value": 50.0,
+        "numerator": 1,
+        "denominator": 2,
+        "note": null
+      },
+      "자연": {
+        "value": 40.0,
+        "numerator": 2,
+        "denominator": 5,
+        "note": null
+      },
+      "주": {
+        "value": 33.33,
+        "numerator": 1,
+        "denominator": 3,
+        "note": null
+      },
+      "풍속": {
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 2,
+        "note": null
+      }
+    },
+    "failed": [
+      {
+        "request_id": "c01_r1",
+        "reasons": [
+          "보존율 86.18% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c03_r1",
+        "reasons": [
+          "보존율 96.66% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c04_r1",
+        "reasons": [
+          "보존율 99.28% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c07_r1",
+        "reasons": [
+          "보존율 65.78% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c09_r1",
+        "reasons": [
+          "왜곡·추가",
+          "형식 R5"
+        ]
+      },
+      {
+        "request_id": "c10_r1",
+        "reasons": [
+          "보존율 55.18% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c11_r1",
+        "reasons": [
+          "보존율 88.83% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c12_r1",
+        "reasons": [
+          "보존율 69.48% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c13_r1",
+        "reasons": [
+          "보존율 50.11% < 100% (laya_estimate)",
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c14_r1",
+        "reasons": [
+          "보존율 51.07% < 100% (laya_estimate)",
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c15_r1",
+        "reasons": [
+          "보존율 51.27% < 100% (laya_estimate)",
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c16_r1",
+        "reasons": [
+          "보존율 50.22% < 100% (laya_estimate)",
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c17_r1",
+        "reasons": [
+          "보존율 68.97% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c20_r1",
+        "reasons": [
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c21_r1",
+        "reasons": [
+          "보존율 92.98% < 100% (laya_estimate)"
+        ]
+      },
+      {
+        "request_id": "c23_r1",
+        "reasons": [
+          "시간초과 122.8s > 120s",
+          "왜곡·추가",
+          "형식 R2"
+        ]
+      },
+      {
+        "request_id": "c24_r1",
+        "reasons": [
+          "보존율 50.16% < 100% (laya_estimate)",
+          "왜곡·추가",
+          "형식 R2"
+        ]
+      },
+      {
+        "request_id": "c25_r1",
+        "reasons": [
+          "보존율 56.60% < 100% (laya_estimate)",
+          "왜곡·추가"
+        ]
+      },
+      {
+        "request_id": "c28_r1",
+        "reasons": [
+          "왜곡·추가"
+        ]
+      }
+    ]
+  },
+  "thresholds": {
+    "fact_recall_macro": 95,
+    "inconsistency_rate": 5,
+    "format_rate": 90,
+    "e2e_success_rate": 95,
+    "overall_pass_rate": 90
+  },
+  "verdict": {
+    "fact_recall_macro": "FAIL",
+    "inconsistency_rate": "FAIL",
+    "format_rate": "FAIL",
+    "e2e_success_rate": "PASS",
+    "overall_pass_rate": "FAIL"
+  }
+}

@@ -1,0 +1,30 @@
+# Local datasets, model files, and generated evaluation results
+/data/
+/models/
+/results/*
+!/results/published_20261105/
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+~$*
