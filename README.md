@@ -62,6 +62,19 @@ conda run -n daon_v2 pip check
 
 Laya는 학습된 모델 디렉터리 전체를 함께 옮긴다. 가중치와 질문 파일은 설정의 SHA256과 일치해야 한다. 사연 프롬프트도 설정의 해시와 대조한다.
 
+### 모델·구성요소 출처
+
+| 구성요소 | 공개 출처 | 프로젝트에서 사용하는 형태 |
+|---|---|---|
+| Whisper KoMixV2 | [Hugging Face · seastar105/whisper-medium-komixv2](https://huggingface.co/seastar105/whisper-medium-komixv2), [GitHub · openai/whisper](https://github.com/openai/whisper) | 원본 모델을 openai-whisper 형식으로 변환한 `komixv2.pt` |
+| Silero VAD | [GitHub · snakers4/silero-vad](https://github.com/snakers4/silero-vad), [v6.2.3 릴리스](https://github.com/snakers4/silero-vad/releases/tag/v6.2.3) | 로컬 저장소와 VAD 가중치 사용 |
+| Qwen3-4B-Instruct-2507 | [Hugging Face · Qwen 원본](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507), [Ollama · Q4_K_M 배포본](https://ollama.com/library/qwen3:4b-instruct-2507-q4_K_M) | Ollama에서 Q4_K_M 가중치를 받아 `qwen3:4b-instruct` 이름으로 사용 |
+| Supertonic 3 | [Hugging Face · Supertone/supertonic-3](https://huggingface.co/Supertone/supertonic-3), [GitHub · Supertonic](https://github.com/supertone-oss-archive/supertonic) | `supertonic==1.3.1`의 기본 모델. 최초 실행 시 자동 다운로드 |
+| Laya | [GitHub · NandhaKishorM/laya](https://github.com/NandhaKishorM/laya), [Hugging Face · 기반 인코더 mmBERT-base](https://huggingface.co/jhu-clsp/mmBERT-base) | 프로젝트 데이터로 학습한 `laya-real400-repair001`. 실제 사용 가중치는 아래 Daon Release에서 제공 |
+| Kiwi 후처리 | [GitHub · bab2min/kiwipiepy](https://github.com/bab2min/kiwipiepy) | `kiwipiepy==0.24.1` 패키지를 설치해 형태소 분석에 사용 |
+
+Supertonic GitHub 링크는 기존 `supertone-inc/supertonic`에서 이동된 현재 주소다. 공개 원본 출처와 프로젝트에서 변환·학습한 배포 파일을 구분하며, 실제 사용 경로·설정은 `config/config.yaml`, Python 패키지 버전은 `requirements.txt`를 기준으로 한다.
+
 ### 배포 가중치
 
 [daon-v2-20261105 Release](https://github.com/PRROVE/Daon/releases/tag/daon-v2-20261105)에서 다음 두 파일을 받는다. 별도 다운로드 스크립트는 사용하지 않는다.
