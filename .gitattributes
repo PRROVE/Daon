@@ -1,0 +1,8 @@
+# Keep checkout bytes stable across platforms, including the hashed story prompt.
+* text=auto eol=lf
+*.png binary
+*.gif binary
+*.wav binary
+*.pt binary
+*.safetensors binary
+*.zip binary
