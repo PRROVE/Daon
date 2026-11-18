@@ -17,4 +17,4 @@ conda run --no-capture-output -n daon_v2 python scripts/demo_story.py --audio "C
 3. `duration`의 자리표시자 `0.0`을 실제 음성 길이(초)로 바꾸고, `length_bucket`에는 길이 구간의 상한을 적는다. 예를 들어 15초 음성은 `20`으로 분류한다.
 4. 화자·주제·닉네임·에피소드 정보를 실제 데이터에 맞게 수정한다. 여러 건은 한 줄에 하나씩 추가하고 `sample_id`는 중복 없이 사용한다.
 
-`wav`와 `transcript` 경로는 manifest가 있는 폴더 기준이다. 상세 실행 명령은 [프로젝트 README](../README.md)를 참고한다.
+`wav`와 `transcript` 경로는 manifest가 있는 폴더 기준이다. 환경 준비는 [설치 안내](../docs/SETUP.md), 데이터셋 생성·판정·집계 명령은 [평가 실행 안내](../docs/EVALUATION.md)를 참고한다.
